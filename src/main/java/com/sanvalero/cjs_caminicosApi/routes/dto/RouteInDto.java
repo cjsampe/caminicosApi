@@ -20,4 +20,8 @@ public class RouteInDto {
     int unevenness;
     Boolean circular;
     String time;
+    String map;
+    String photo1;
+    String photo2;
+    String photo3;
 }
