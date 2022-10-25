@@ -91,6 +91,18 @@ public class RouteServiceImpl implements RouteService {
                 case "time":
                     route.setTime(String.valueOf(value));
                     break;
+                case "map":
+                    route.setMap(String.valueOf(value));
+                    break;
+                case "photo1":
+                    route.setPhoto1(String.valueOf(value));
+                    break;
+                case "photo2":
+                    route.setPhoto2(String.valueOf(value));
+                    break;
+                case "photo3":
+                    route.setPhoto3(String.valueOf(value));
+                    break;
             }
         });
         routeRepository.save(route);

@@ -12,6 +12,6 @@ public class RouteNotFoundException extends RuntimeException {
     }
 
     public RouteNotFoundException(long id){
-        super("Error al buscar la información del relato corto por el ID: " + id);
+        super("Error al buscar la información de esta ruta por el ID: " + id);
     }
 }

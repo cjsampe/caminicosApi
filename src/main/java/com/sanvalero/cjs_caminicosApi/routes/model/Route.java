@@ -35,5 +35,13 @@ Route extends BaseModel {
     Boolean circular;
     @Column()
     String time;
+    @Column()
+    String map;
+    @Column()
+    String photo1;
+    @Column()
+    String photo2;
+    @Column()
+    String photo3;
 
 }
