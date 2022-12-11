@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.sql.Blob;
 
 @Data()
 @AllArgsConstructor
@@ -21,27 +22,29 @@ Route extends BaseModel {
     String province;
     @Column(length = 500)
     String title;
-    @Column(length = 3000)
+    @Column(length = 2000)
     String description;
     @Column()
     float km;
-    @Column()
-    String signaling;
     @Column()
     String season;
     @Column()
     int unevenness;
     @Column()
-    Boolean circular;
+    String type;
     @Column()
     String time;
-    @Column()
-    String map;
     @Column()
     String photo1;
     @Column()
     String photo2;
     @Column()
-    String photo3;
+    String levelys;
+    @Column()
+    int max;
+    @Column()
+    int min;
+    @Column()
+    long level;
 
 }

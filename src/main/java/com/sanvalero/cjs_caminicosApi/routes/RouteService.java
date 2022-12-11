@@ -2,6 +2,7 @@ package com.sanvalero.cjs_caminicosApi.routes;
 
 import com.sanvalero.cjs_caminicosApi.routes.dto.RouteInDto;
 import com.sanvalero.cjs_caminicosApi.routes.dto.RouteOutDto;
+import com.sanvalero.cjs_caminicosApi.routes.model.Route;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,7 @@ public interface RouteService {
 
     RouteOutDto get(long id);
 
-   /** List<Route> findByProvince(String province);**/
+  /** List<Route> findByProvince(String province);**/
 
     RouteOutDto post(RouteInDto routeInDto);
 

@@ -19,4 +19,6 @@ Post extends BaseModel {
     String user;
     @Column(length = 1000)
     String post;
+    @Column()
+    long route;
 }

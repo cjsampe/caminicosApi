@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostOutDto extends BaseOutDto {
+    String name;
     String user;
     String post;
+    long route;
 }

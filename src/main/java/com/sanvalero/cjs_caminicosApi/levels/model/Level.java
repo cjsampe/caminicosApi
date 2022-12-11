@@ -17,4 +17,5 @@ public class
 Level extends BaseModel {
     @Column(length = 1000)
     String characteristics;
+
 }

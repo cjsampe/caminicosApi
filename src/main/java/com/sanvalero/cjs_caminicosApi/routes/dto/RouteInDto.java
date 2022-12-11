@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+
 
 @Data
 @AllArgsConstructor
@@ -15,13 +17,15 @@ public class RouteInDto {
     String title;
     String description;
     float km;
-    String signaling;
     String season;
     int unevenness;
-    Boolean circular;
+    String type;
     String time;
-    String map;
     String photo1;
     String photo2;
-    String photo3;
+    String levelys;
+    long level;
+    int max;
+    int min;
+
 }

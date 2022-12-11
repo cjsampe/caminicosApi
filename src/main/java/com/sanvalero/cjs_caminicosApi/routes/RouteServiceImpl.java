@@ -32,11 +32,12 @@ public class RouteServiceImpl implements RouteService {
     public RouteOutDto get(long id){
         return getRouteOutDto(getRouteOrFail(id));
     }
-/**
+
+    /**
     @Override
     public List<Route> findByProvince(String province) {
-        List<Route> routes = routeRepository.findByProvince(province);
-        return routes;
+        /**List<Route> routes = routeRepository.findByProvince(province);
+        return routeRepository.findByProvince(province);
 
     }**/
 
@@ -76,23 +77,17 @@ public class RouteServiceImpl implements RouteService {
                 case "km":
                     route.setKm(Float.parseFloat(String.valueOf(value)));
                     break;
-                case "signaling":
-                    route.setSignaling(String.valueOf(value));
-                    break;
                 case "season":
                     route.setSeason(String.valueOf(value));
                     break;
                 case "unevenness":
                     route.setUnevenness(Integer.parseInt(String.valueOf(value)));
                     break;
-                case "circular":
-                    route.setCircular(Boolean.parseBoolean(String.valueOf(value)));
+                case "type":
+                    route.setType(String.valueOf(value));
                     break;
                 case "time":
                     route.setTime(String.valueOf(value));
-                    break;
-                case "map":
-                    route.setMap(String.valueOf(value));
                     break;
                 case "photo1":
                     route.setPhoto1(String.valueOf(value));
@@ -100,9 +95,16 @@ public class RouteServiceImpl implements RouteService {
                 case "photo2":
                     route.setPhoto2(String.valueOf(value));
                     break;
-                case "photo3":
-                    route.setPhoto3(String.valueOf(value));
+                case "levelys":
+                    route.setLevelys(String.valueOf(value));
                     break;
+                case "max":
+                    route.setMax(Integer.parseInt(String.valueOf(value)));
+                    break;
+                case "min":
+                    route.setMin(Integer.parseInt(String.valueOf(value)));
+                    break;
+
             }
         });
         routeRepository.save(route);

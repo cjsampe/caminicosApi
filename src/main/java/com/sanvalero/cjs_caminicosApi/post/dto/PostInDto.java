@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostInDto {
+    String name;
     String user;
     String post;
+    long route;
 }

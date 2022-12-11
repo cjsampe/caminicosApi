@@ -34,6 +34,7 @@ public class PostServiceImpl implements PostService {
     }
 
 
+
     @Override
     public PostOutDto post(PostInDto postInDto) {
         Post newPost = new Post();

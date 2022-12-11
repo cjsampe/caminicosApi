@@ -2,6 +2,8 @@ package com.sanvalero.cjs_caminicosApi.routes;
 
 import com.sanvalero.cjs_caminicosApi.routes.dto.RouteInDto;
 import com.sanvalero.cjs_caminicosApi.routes.dto.RouteOutDto;
+import com.sanvalero.cjs_caminicosApi.routes.exception.RouteNotFoundException;
+import com.sanvalero.cjs_caminicosApi.routes.model.Route;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,7 @@ public class RouteController {
         RouteOutDto routeOutDto = routeService.get(id);
         return ResponseEntity.ok(routeOutDto);
     }
+
 
     @DeleteMapping(PATH + "/{id}")
     public ResponseEntity<?> delete(@PathVariable long id){

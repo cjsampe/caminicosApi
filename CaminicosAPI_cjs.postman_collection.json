@@ -1,0 +1,442 @@
+{
+	"info": {
+		"_postman_id": "ad6b61ed-7d75-45f0-8f5c-42fdce5da100",
+		"name": "CaminicosAPI_cjs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21878320"
+	},
+	"item": [
+		{
+			"name": "routes",
+			"item": [
+				{
+					"name": "post routes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ruta de los dinosaurios\",\r\n    \"village\": \"Galve\",\r\n    \"province\": \"Teruel\",\r\n    \"title\": \"Ruta de los dinosaurios en Galve\",\r\n    \"description\": \"Sendero circular de trazado bidireccional que transcurre por la Vega del río Alfambra. Durante el recorrido podemos ir observando 5 reproducciones de los reptiles de Galve, como son el dinosaurio carnívoro Megalosaurus, los dinosaurios herbívoros Iguanodon y Aragosaurus y los reptiles voladores Psungarípterus. La ruta se extiende a lo largo de 4,4 km, a realizar a pie, bicicleta o ecuestre\",\r\n    \"km\": 4.2,\r\n    \"season\": \"primavera\",\r\n    \"unevenness\": 34,\r\n    \"type\": \"Circular\",\r\n    \"time\": \"1 hora 30 minutos\",\r\n    \"photo1\": \"https://i.imgur.com/HCqyFUp.jpg\",\r\n    \"photo2\": \"https://i.imgur.com/Mor29to.jpg\",\r\n    \"levelys\": \"Básico\",\r\n    \"post\": 0,\r\n    \"max\": 1186,\r\n    \"min\": 1141,\r\n    \"level\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:2044/routes",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"routes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get routes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:2044/routes",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"routes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get routes by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:2044/routes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"routes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put routes",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ruta de los dinosaurios\",\r\n    \"village\": \"Galve\",\r\n    \"province\": \"Teruel\",\r\n    \"title\": \"Ruta de los dinosaurios en Galve\",\r\n    \"description\": \"Sendero circular de trazado bidireccional que transcurre por la Vega del río Alfambra. Durante el recorrido podemos ir observando 5 reproducciones de los reptiles de Galve, como son el dinosaurio carnívoro Megalosaurus, los dinosaurios herbívoros Iguanodon y Aragosaurus y los reptiles voladores Psungarípterus. La ruta se extiende a lo largo de 4,4 km, a realizar a pie, bicicleta o ecuestre\",\r\n    \"km\": 4.2,\r\n    \"season\": \"verano\",\r\n    \"unevenness\": 34,\r\n    \"type\": \"Circular\",\r\n    \"time\": \"1 hora 30 minutos\",\r\n    \"photo1\": \"https://i.imgur.com/HCqyFUp.jpg\",\r\n    \"photo2\": \"https://i.imgur.com/Mor29to.jpg\",\r\n    \"levelys\": \"Básico\",\r\n    \"post\": 0,\r\n    \"max\": 1186,\r\n    \"min\": 1141,\r\n    \"level\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:2044/routes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"routes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch routes",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Ruta de los dinosaurios\",\r\n    \"village\": \"Galve\",\r\n    \"province\": \"Teruel\",\r\n    \"title\": \"Ruta de los dinosaurios en Galve\",\r\n    \"description\": \"Sendero circular de trazado bidireccional que transcurre por la Vega del río Alfambra. Durante el recorrido podemos ir observando 5 reproducciones de los reptiles de Galve, como son el dinosaurio carnívoro Megalosaurus, los dinosaurios herbívoros Iguanodon y Aragosaurus y los reptiles voladores Psungarípterus. La ruta se extiende a lo largo de 4,4 km, a realizar a pie, bicicleta o ecuestre\",\r\n    \"km\": 4.2,\r\n    \"season\": \"verano\",\r\n    \"unevenness\": 34,\r\n    \"type\": \"Circular\",\r\n    \"time\": \"1 hora 30 minutos\",\r\n    \"photo1\": \"https://i.imgur.com/HCqyFUp.jpg\",\r\n    \"photo2\": \"https://i.imgur.com/Mor29to.jpg\",\r\n    \"levelys\": \"Básico\",\r\n    \"post\": 0,\r\n    \"max\": 1186,\r\n    \"min\": 1141,\r\n    \"level\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:2044/routes/65",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"routes",
+								"65"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete routes",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:2044/routes/25",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"routes",
+								"25"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "posts",
+			"item": [
+				{
+					"name": "post posts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\":\"Que bonita ruta\",\r\n  \"user\": \"caminate número 2\",\r\n  \"post\": \"Precioso paseo para hacer en  familia\",\r\n  \"route\": \"1\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:2044/posts",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:2044/posts",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get posts by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:2044/posts/1",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put posts",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\":\"Que bonita ruta\",\r\n  \"user\": \"caminate número 24\",\r\n  \"post\": \"Precioso paseo para hacer en  familia\",\r\n  \"route\": \"1\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:2044/posts/1",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch posts",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\":\"Que bonita ruta\",\r\n  \"user\": \"caminate número 24\",\r\n  \"post\": \"Precioso paseo para hacer en  familia\",\r\n  \"route\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:2044/post/65",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"post",
+								"65"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete posts",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:2044/posts/140",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"posts",
+								"140"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "levels",
+			"item": [
+				{
+					"name": "post levels",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\":\"Facil\",\r\n  \"characteristics\": \"Paseo ideal para hacer en  familia\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:2044/levels",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"levels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get levels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:2044/levels",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"levels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get levels by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:2044/levels/1",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"levels",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put levels",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\":\"Moderado\",\r\n  \"characteristics\": \"Paseo que necesita buena forma física\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:2044/levels/1",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"levels",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch levels",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\":\"Facil\",\r\n  \"characteristics\": \"Paseo ideal para hacer en familia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:2044/levels/1",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"levels",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete levels",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:2044/levels/14",
+							"host": [
+								"localhost"
+							],
+							"port": "2044",
+							"path": [
+								"levels",
+								"14"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
