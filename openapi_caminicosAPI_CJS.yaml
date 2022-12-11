@@ -1,0 +1,940 @@
+openapi: 3.0.2
+servers:
+  - url: /caminicosAPI
+info:
+  description: API para información rutas de senderismo
+  version: "1.0"
+  title: caminicosAPI_cjs
+tags:
+  - name: routes
+    description: Operaciones para realizar con información de rutas de senderismo de Aragón
+  - name: levels
+    description: Operaciones para realizar con información de los diferentes niveles de dificultad de las rutas de senderismo de Aragón
+  - name: posts
+    description: Operaciones para realizar con información de los comentarios de los usuarios sobre las rutas de senderismo
+paths:
+  /routes:
+
+    get:
+      tags:
+        - routes
+      summary: Listado de rutas de senderismo
+      description: Obtiene la información de todas las rutas, localización, duración, nivel dificultad...
+      operationId: getRoutes
+      responses:
+        '200':
+          description: Se devuelve el listado de rutas de senderismo correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RouteIn'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        
+        '404':
+          description: No se ha encontrado la ruta de senderismo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFound'
+              example:
+                internalError: 1
+                message: "No se ha podido encontrar la ruta de senderismo"
+    post:
+      tags:
+        - routes
+      summary: Registro de una nueva ruta
+      description: Registra una nueva ruta de senderismo con toda la información sobre ella
+      operationId: postRoute
+      requestBody:
+        $ref: '#/components/requestBodies/RouteIn'
+      responses:
+        '201':
+          description: La ruta se registra correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '400':
+          description: Faltan campos obligatorios o hay error en el formato de entrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+          
+  /routes/{routeId}:
+    get:
+      tags: 
+        - routes
+      summary: Obtiene los datos de una ruta de senderismo
+      description: Devuelve los datos de una ruta determinada
+      operationId: getRoute
+      parameters:
+        - name: routeId
+          in: path
+          description: Identificador de la ruta
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 23
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '404':
+          description: No se ha encontrado la ruta de senderismo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFound'
+              example:
+                internalError: 1
+                message: "No se ha podido encontrar la ruta"
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+    delete:
+      tags: 
+        - routes
+      summary: Da de baja una ruta
+      description: Da de baja un ruta a través del id
+      operationId: deleteRoute
+      parameters:
+        - name: routeId
+          in: path
+          description: Identificador de la ruta
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 23
+      responses:
+        '204':
+          description: No content
+        '404':
+          description: No se ha encontrado la ruta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFound'
+              example:
+                internalError: 1
+                message: "No se ha podido encontrar la ruta"
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+    put:
+      tags: 
+        - routes
+      summary: Modifica los datos de una ruta
+      description: Modifica los datos de una ruta de senderismo determinada
+      operationId: modifyRoute
+      parameters:
+        - name: routeId
+          in: path
+          description: Identificador de la ruta que se va a modificar
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 23
+      requestBody:
+        description: Los datos nuevos de la ruta
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteIn'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '400':
+          description: Faltan campos obligatorios o hay error en el formato de entrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '404':
+          description: No se ha encontrado la ruta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFound'
+              example:
+                internalError: 1
+                message: "No se ha podido encontrar la ruta"
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+    patch:
+      tags: 
+        - routes
+      summary: Modifica los datos de una ruta
+      description: Modifica los datos de una ruta determinada
+      operationId: patchRoute
+      parameters:
+        - name: routeId
+          in: path
+          description: Identificador de la ruta que se va a modificar
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 23
+      requestBody:
+        description: Los datos nuevos de la ruta
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteIn'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '400':
+          description: Faltan campos obligatorios o hay error en el formato de entrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '404':
+          description: No se ha encontrado la ruta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFound'
+              example:
+                internalError: 1
+                message: "No se ha podido encontrar la ruta"
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+                
+      
+  /levels:
+
+    get:
+      tags:
+        - levels
+      summary: Listado de niveles de dificultad 
+      description: Especificaciones de los diferentes niveles de dificultad de las rutas
+      operationId: getLevels
+      responses:
+        '200':
+          description: Se devuelve el listado de los niveles correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LevelIn'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        
+        '404':
+          description: No se ha encontrado ningún nivel
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFound'
+              example:
+                internalError: 1
+                message: "No se ha podido encontrar el nivel de dificultad"
+    post:
+      tags:
+        - levels
+      summary: Registro de un nuevo nivel
+      description: Registra un nuevo nivel
+      operationId: postLevel
+      requestBody:
+        $ref: '#/components/requestBodies/LevelIn'
+      responses:
+        '201':
+          description: El nivel se registra correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Level'
+        '400':
+          description: Faltan campos obligatorios o hay error en el formato de entrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+          
+  /levels/{levelId}:
+    get:
+      tags: 
+        - levels
+      summary: Obtiene la información de un nivel determinado
+      description: Devuelve los datos de un nivel determinado
+      operationId: getLevel
+      parameters:
+        - name: levelId
+          in: path
+          description: Identificador del nivel
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 23
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Level'
+        '404':
+          description: No se ha encontrado el nivel
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFound'
+              example:
+                internalError: 1
+                message: "No se ha podido encontrar el nivel"
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+    delete:
+      tags: 
+        - levels
+      summary: Da de baja un nivel
+      description: Da de baja un nivel a través del id
+      operationId: deleteLevel
+      parameters:
+        - name: levelId
+          in: path
+          description: Identificador del nivel
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 23
+      responses:
+        '204':
+          description: No content
+        '404':
+          description: No se ha encontrado el nivel de dificultad
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFound'
+              example:
+                internalError: 1
+                message: "No se ha podido encontrar el nivel"
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+    put:
+      tags: 
+        - levels
+      summary: Modifica los datos de un nivel 
+      description: Modifica los datos de un nivel determinado
+      operationId: modifyLevel
+      parameters:
+        - name: levelId
+          in: path
+          description: Identificador de un nivel que se va a modificar
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 23
+      requestBody:
+        description: Los datos nuevos del nivel
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LevelIn'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Level'
+        '400':
+          description: Faltan campos obligatorios o hay error en el formato de entrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '404':
+          description: No se ha encontrado el nivel
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFound'
+              example:
+                internalError: 1
+                message: "No se ha podido encontrar el nivel"
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+    patch:
+      tags: 
+        - levels
+      summary: Modifica los datos de un nivel
+      description: Modifica los datos de un nivel determinado
+      operationId: patchLevel
+      parameters:
+        - name: levelId
+          in: path
+          description: Identificador del nivel que se va a modificar
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 23
+      requestBody:
+        description: Los datos nuevos del nivel
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LevelIn'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Level'
+        '400':
+          description: Faltan campos obligatorios o hay error en el formato de entrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '404':
+          description: No se ha encontrado el nivel
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFound'
+              example:
+                internalError: 1
+                message: "No se ha podido encontrar el nivel"
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'              
+  
+  
+  /posts:
+
+    get:
+      tags:
+        - posts
+      summary: Listado de comentarios de los usuarios
+      description: Comentarios de los usuarios de las rutas
+      operationId: getPosts
+      responses:
+        '200':
+          description: Se devuelve el listado de los comentarios correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PostIn'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        
+        '404':
+          description: No se ha encontrado ningún comentario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFound'
+              example:
+                internalError: 1
+                message: "No se ha podido encontrar el comentario"
+    post:
+      tags:
+        - posts
+      summary: Registro de un nuevo comentario
+      description: Registra un nuevo comentario
+      operationId: postPost
+      requestBody:
+        $ref: '#/components/requestBodies/PostIn'
+      responses:
+        '201':
+          description: El comentario se registra correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '400':
+          description: Faltan campos obligatorios o hay error en el formato de entrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+          
+  /posts/{postId}:
+    get:
+      tags: 
+        - posts
+      summary: Obtiene la información de un comentario determinado
+      description: Devuelve los datos de un comentario determinado
+      operationId: getPost
+      parameters:
+        - name: postId
+          in: path
+          description: Identificador del comentario
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 23
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '404':
+          description: No se ha encontrado el comentario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFound'
+              example:
+                internalError: 1
+                message: "No se ha podido encontrar el comentario"
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+    delete:
+      tags: 
+        - posts
+      summary: Da de baja un comentario
+      description: Da de baja un comentario a través del id
+      operationId: deletePost
+      parameters:
+        - name: postId
+          in: path
+          description: Identificador del comentario
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 23
+      responses:
+        '204':
+          description: No content
+        '404':
+          description: No se ha encontrado el comentario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFound'
+              example:
+                internalError: 1
+                message: "No se ha podido encontrar el comentario"
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+    put:
+      tags: 
+        - posts
+      summary: Modifica el comentario
+      description: Modifica el contenido de un comentario determinado
+      operationId: modifyPost
+      parameters:
+        - name: postId
+          in: path
+          description: Identificador de un comentario que se va a modificar
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 23
+      requestBody:
+        description: Los datos nuevos del comentario
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostIn'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '400':
+          description: Faltan campos obligatorios o hay error en el formato de entrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '404':
+          description: No se ha encontrado el comentario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFound'
+              example:
+                internalError: 1
+                message: "No se ha podido encontrar el comentario"
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+    patch:
+      tags: 
+        - posts
+      summary: Modifica los datos de un comentario
+      description: Modifica los datos de un comentario determinado
+      operationId: patchPost
+      parameters:
+        - name: postId
+          in: path
+          description: Identificador del comentario que se va a modificar
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 23
+      requestBody:
+        description: Los datos nuevos del comentario
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostIn'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '400':
+          description: Faltan campos obligatorios o hay error en el formato de entrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '404':
+          description: No se ha encontrado el comentario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFound'
+              example:
+                internalError: 1
+                message: "No se ha podido encontrar el comentario"
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'   
+  
+  
+          
+components:
+  schemas:
+    RouteIn:
+      type: object
+      properties:
+        name:
+          type: string
+          format: string
+          description: Nombre de la ruta
+          example: Las pasarelas de Alquezar
+        village:
+          type: string
+          format: string
+          description: Localización de la ruta por ciudad
+          example: Alquezar
+        province:
+          type: string
+          format: string
+          description: Localización de la ruta por provincia
+          example: Huesca
+        title:
+          type: string
+          format: string
+          description: Título de la ruta
+          example: Bonita ruta por las pasarelas de Alquezar    
+        description:
+          type: string
+          format: string
+          description: Descripción del relato
+          example: Ruta en la que disrutar de la ........
+        km:
+          type: number
+          format: float
+          description: Duración de la ruta en Kilómetros
+          example: 7,2
+        season:
+          type: string
+          format: string
+          description: Estación del año ideal para realizar la ruta
+          example: Otoño  
+        unevenness:
+          type: integer
+          format: int64
+          description: Desnivel
+          example: 340
+        type:
+          type: string
+          format: string
+          description: Que tipo de ruta es
+          example: Circular
+        time:
+          type: string
+          format: string
+          description: Tiempo duración ruta
+          example: 1h 20m
+        photo1:
+          type: string
+          format: string
+          description: primera imagen
+          example: https://i.imgur.com/HCqyFUp.jpg
+        photo2:
+          type: string
+          format: string
+          description: segunda imagen
+          example: https://i.imgur.com/Mor29to.jpg
+        levelys:
+          type: string
+          format: string
+          description: nivel
+          example: Básico
+        max:
+          type: integer
+          format: int64
+          description: Desnivel máximo
+          example: 340
+        min:
+          type: integer
+          format: int64
+          description: Desnivel mínimo
+          example: 120  
+        level:
+          type: integer
+          format: int64
+          description: Id del nivel
+          example: 1 
+          
+    Route:
+      allOf:
+        - type: object
+          properties:
+            id: 
+              type: integer
+              format: int64
+              example: 23
+        - $ref: '#/components/schemas/RouteIn'
+    
+    
+    
+    LevelIn:
+      type: object
+      properties:
+        name:
+          type: string
+          format: string
+          description: Nombre del nivel de dificultad
+          example: Básico
+        characteristics:
+          type: string
+          format: string
+          description: Características de este nivel
+          example: Ruta de dificultad baja, de duración nunca superior a ....
+        
+    Level:
+      allOf:
+        - type: object
+          properties:
+            id: 
+              type: integer
+              format: int64
+              example: 23
+        - $ref: '#/components/schemas/LevelIn'
+        
+        
+    PostIn:
+      type: object
+      properties:
+        name:
+          type: string
+          format: string
+          description: Nombre/título del comentario
+          example: Básico
+        user:
+          type: string
+          format: string
+          description: Nombre del ususario
+          example: Andarín
+        post:
+          type: string
+          format: string
+          description: comentario del usuario
+          example: Me ha encantado hacer esta ruta ya que ....
+        
+    Post:
+      allOf:
+        - type: object
+          properties:
+            id: 
+              type: integer
+              format: int64
+              example: 23
+        - $ref: '#/components/schemas/PostIn'    
+   
+    ErrorResponse:
+      properties:
+        internalError:
+          type: number
+          format: int32
+        message:
+          type: string
+      type: object
+    ResourceNotFound:
+      allOf:
+        - type: object
+        - $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      allOf:
+        - type: object
+        - $ref: '#/components/schemas/ErrorResponse'
+      example:
+        internalError: 999
+        message: "Internal Server Error"
+    BadRequest:
+      allOf:
+        - type: object
+        - $ref: '#/components/schemas/ErrorResponse'
+      example:
+        internalError: 102
+        message: "El campo 'xxxxx' es obligatorio"
+    ErrorMap:
+      type: object
+      additionalProperties:
+        type: string
+      example:
+        quantity: must be greater than 0
+        productId: must be greater than 0
+    
+  responses:
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: 101
+            message: "Se ha producido un error en el servidor"
+    NoContent:
+      description: No Content
+    StoryNotFound:
+      description: No encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: 404
+            message: "No encontrado"
+  
+          
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/ErrorResponse'
+            properties:
+              errors:
+               $ref: '#/components/schemas/ErrorMap'
+  requestBodies:
+    RouteIn:
+      description: Los nuevos datos de una ruta 
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RouteIn'
+    
+    LevelIn:
+      description: Los nuevos datos del nivel
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LevelIn' 
+            
+    PostIn:
+      description: Los nuevos datos del comentario
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PostIn'            
+    
+
+ 

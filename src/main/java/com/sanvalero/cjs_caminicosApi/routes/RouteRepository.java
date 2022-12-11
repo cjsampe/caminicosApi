@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface RouteRepository extends CrudRepository<Route, Long> {
      List<Route> findAll();
-     List<Route> findByProvince(String province);
+    /** List<Route> findByProvince(String province);**/
 
 
 }

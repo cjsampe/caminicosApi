@@ -9,18 +9,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RouteOutDto extends BaseOutDto {
+    String name;
     String village;
     String province;
     String title;
     String description;
     float km;
-    String signaling;
     String season;
     int unevenness;
-    Boolean circular;
+    String type;
     String time;
-    String map;
     String photo1;
     String photo2;
-    String photo3;
+    String levelys;
+    int max;
+    int min;
+    long level;
 }

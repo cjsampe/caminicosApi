@@ -9,7 +9,9 @@ import java.util.Map;
 public interface PostService {
     List<PostOutDto> get();
 
-    PostOutDto get(long id);
+   PostOutDto get(long id);
+
+
 
     PostOutDto post(PostInDto postInDto);
 
